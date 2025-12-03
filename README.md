@@ -7,13 +7,13 @@
 Disclaimer! Only used for educational purposes.
 
 ```bash
-    /assets
-        /css
-        /js
-    /pages
-    /public
-    index.html
-    README.md
+/assets
+    /css
+    /js
+/pages
+/public
+index.html
+README.md
 ```
 
 ## Tech Stack Used
