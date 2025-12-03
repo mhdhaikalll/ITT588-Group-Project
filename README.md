@@ -21,3 +21,7 @@ README.md
 - HTML5
 - CSS3 boosted with TailwindCSS
 - JavaScript with JQuery
+
+## Folder
+
+Each folder contains a README.md.
