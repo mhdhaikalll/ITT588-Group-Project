@@ -12,6 +12,8 @@ Disclaimer! Only used for educational purposes.
     /js
 /pages
 /public
+    /img
+    /svg
 index.html
 README.md
 ```
