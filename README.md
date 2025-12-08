@@ -6,7 +6,7 @@ This repository contains the self made HTML template and documentation to help g
 
 ## This is a guidance on using this HTML template
 
-Disclaimer! Strictly used within this group assignment
+Strictly used within this group assignment
 
 ```bash
 # Project Folder Structure
@@ -55,8 +55,6 @@ npx @tailwindcss/cli -i ./assets/css/global.css -o ./dist/css/output.css --watch
 
 This repository also contains Git documentation to help you guys understand how Git works and how to work with other team members effeciently.
 
-<div style="text-align: center;">
+## Disclaimer
 
-created by @mhdhaikalll
-
-</div>
+This repository is created by @mhdhaikalll purely for group assignment and related task
