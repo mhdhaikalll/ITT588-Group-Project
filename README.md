@@ -1,10 +1,12 @@
 # Group Project Repository Guidance
 
+This repository contains the self made HTML template and documentation to help group members work collaboratively with each other.
+
 ---
 
 ## This is a guidance on using this HTML template
 
-Disclaimer! Only used for educational purposes.
+Disclaimer! Strictly used within this group assignment
 
 ```bash
 # Project Folder Structure
@@ -34,12 +36,27 @@ project-root/
 
 - HTML5
 - CSS3 boosted with TailwindCSS
-- JavaScript with JQuery
-
-## Folder
+- JavaScript with Alpine JS
 
 ## Instruction
+
+1. Run this command to enable TailwindCSS.
 
 ```bash
 npx @tailwindcss/cli -i ./assets/css/global.css -o ./dist/css/output.css --watch
 ```
+
+2. Do not commit directly onto the main branch.
+
+3. Any issue, please contact me directly.
+
+
+## Git Documentation
+
+This repository also contains Git documentation to help you guys understand how Git works and how to work with other team members effeciently.
+
+<div style="text-align: center;">
+
+created by @mhdhaikalll
+
+</div>
