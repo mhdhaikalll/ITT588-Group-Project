@@ -1,0 +1,26 @@
+{
+  "name": "group-project",
+  "version": "1.0.0",
+  "description": "---",
+  "main": "index.html",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhdhaikalll/ITT588-Group-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mhdhaikalll/ITT588-Group-Project/issues"
+  },
+  "homepage": "https://github.com/mhdhaikalll/ITT588-Group-Project#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.17",
+    "alpinejs": "^3.15.2",
+    "tailwindcss": "^4.1.17"
+  }
+}
