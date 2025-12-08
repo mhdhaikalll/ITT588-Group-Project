@@ -41,15 +41,22 @@ project-root/
 
 ## Instruction
 
-1. Run this command to enable TailwindCSS.
+1. Clone this repository
+
+```bash
+git clone https://github.com/mhdhaikalll/ITT588-Group-Project.git
+```
+2. Read Git-Guide.md for a full guide on using Git
+
+3. Run this command to enable TailwindCSS.
 
 ```bash
 npx @tailwindcss/cli -i ./assets/css/global.css -o ./dist/css/output.css --watch
 ```
 
-2. Do not commit directly onto the main branch.
+4. Do not commit directly onto the main branch.
 
-3. Any issue, please contact me directly.
+5. Any issue, please contact me directly.
 
 
 ## Git Documentation
