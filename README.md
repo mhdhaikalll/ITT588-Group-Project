@@ -25,10 +25,11 @@ project-root/
 ├── node_modules/
 ├── pages/              # HTML pages
 ├── public/             # Public assets
-├── .gitignore
+├── .gitignore          # Ignore certain folder
+├── Git-Guide.md        # Git documentation
 ├── index.html          # Index page
 ├── package-lock.json
-├── package.json
+├── package.json        # Dependencies
 └── README.md           # Official documentation
 ```
 
