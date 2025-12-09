@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta Tag -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>Web Title</title>
     <!-- Tailwind CSS -->
     <link href="./dist/css/output.css" rel="stylesheet">
     <!-- Alpine.js for component loading -->
@@ -13,7 +14,7 @@
     <!-- Header Component -->
     <div x-data x-html="(await (await fetch('./components/Header.html')).text())"></div>
 
-    <main>
+    <main class="p-4">
         <h1>Welcome to the Main Content</h1>
         <p>This is where the main content of the page goes.</p>
     </main>
