@@ -43,17 +43,18 @@ project-root/
 
 1. Clone this repository
 
-```bash
-git clone https://github.com/mhdhaikalll/ITT588-Group-Project.git
-```
+    ```bash
+    git clone https://github.com/mhdhaikalll/ITT588-Group-Project.git
+    ```
+
 2. Read Git-Guide.md for a full guide on using Git
 
 3. Run both of this commands to download dependencies enable TailwindCSS.
 
-```bash
-npm install
-npx @tailwindcss/cli -i ./assets/css/global.css -o ./dist/css/output.css --watch
-```
+    ```bash
+    npm install
+    npx @tailwindcss/cli -i ./assets/css/global.css -o ./dist/css/output.css --watch
+    ```
 
 4. Do not commit directly onto the main branch.
 
