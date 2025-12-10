@@ -48,9 +48,10 @@ git clone https://github.com/mhdhaikalll/ITT588-Group-Project.git
 ```
 2. Read Git-Guide.md for a full guide on using Git
 
-3. Run this command to enable TailwindCSS.
+3. Run both of this commands to download dependencies enable TailwindCSS.
 
 ```bash
+npm install
 npx @tailwindcss/cli -i ./assets/css/global.css -o ./dist/css/output.css --watch
 ```
 
