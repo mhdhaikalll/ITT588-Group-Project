@@ -71,6 +71,10 @@ Please add this onto each of new HTML file everytime you guys need to create a p
 
 This is to enable both TailwindCSS and Alpine.js
 
+OR
+
+Just copy and paste the template.html inside /pages and then rename it onto your desire namefile.
+
 ## Git Documentation
 
 This repository also contains Git documentation to help you guys understand how Git works and how to work with other team members effeciently.
