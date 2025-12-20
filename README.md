@@ -30,7 +30,8 @@ project-root/
 ├── index.html          # Index page
 ├── package-lock.json
 ├── package.json        # Dependencies
-└── README.md           # Official documentation
+├── README.md           # Official documentation
+└── tailwind.config.js  # Tailwind Configuration File
 ```
 
 ## Tech Stack Used
