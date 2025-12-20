@@ -60,6 +60,15 @@ project-root/
 
 5. Any issue, please contact me directly.
 
+## Issue No.1
+
+Please add this onto each of new HTML file everytime you guys need to create a page or components
+```html
+<link href="../dist/css/output.css" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
+```
+
+This is to enable both TailwindCSS and Alpine.js
 
 ## Git Documentation
 
