@@ -15,17 +15,16 @@ project-root/
 │   ├── css/
 │   │   └── global.css  # Tailwind input file and global configuration
 │   ├── images/
-│   │   ├── icons/      # SVG, Favicons
-│   │   └── photos/     # Photos assets
-│   └── js/             # JS utility
-├── components/         # Reusable HTML components (Header, Footer)
+│       ├── icons/      # SVG, Favicons
+│       └── photos/     # Photos assets
+├── components/         # Reusable HTML & JS components (Header, Footer)
 ├── dist/               # Compiled assets
 │   └── css/
 │       └── output.css  # Tailwind output file
-├── node_modules/
+├── node_modules/       # Dependencies modules
 ├── pages/              # HTML pages
 ├── public/             # Public assets
-├── .gitignore          # Ignore certain folder
+├── .gitignore          # Ignore certain folder on commit
 ├── Git-Guide.md        # Git documentation
 ├── index.html          # Index page
 ├── package-lock.json
@@ -74,6 +73,12 @@ This is to enable both TailwindCSS and Alpine.js
 OR
 
 Just copy and paste the template.html inside /pages and then rename it onto your desire namefile.
+
+## Issue No.2
+
+In order for you to see the changes without reloading the page each time, use Live Preview extension on VS Code.
+
+If you are using PHP Serve, it doesn't reload automatically with each changes.
 
 ## Git Documentation
 
