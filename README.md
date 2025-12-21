@@ -78,7 +78,7 @@ Please add this onto each of new HTML file everytime you guys need to create a p
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
 ```
 
-This is to enable both TailwindCSS and Alpine.js
+This is to enable all the dependencies using CDN
 
 OR
 

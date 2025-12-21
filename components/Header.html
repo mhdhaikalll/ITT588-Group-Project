@@ -2,13 +2,22 @@
 <html>
   <head></head>
   <body>
-    <header class="flex justify-between items-center p-4 primary-color text-color">
-      <h1 class="text-xl font-black">Web Title</h1>
-      <nav>
-        <ul class="flex flex-row gap-12 justify-evenly cursor-pointer">
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
+    <header class="navbar bg-base-100 shadow-sm">
+      <div class="flex-1">
+        <a href="/" class="btn btn-ghost text-xl">Habit Tracker</a>
+      </div>
+      <nav class="flex-none">
+        <ul class="menu menu-horizontal px-1">
+          <li><a>Links</a></li>
+          <li>
+            <details>
+              <summary>Parent</summary>
+              <ul class="bg-base-100 rounded-t-none p-2">
+                <li><a>Link 1</a></li>
+                <li><a>Link 2</a></li>
+              </ul>
+            </details>
+          </li>
         </ul>
       </nav>
     </header>

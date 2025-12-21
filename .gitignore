@@ -1,1 +1,6 @@
 node_modules
+dist/
+dist/*
+dist/css/*
+/dist
+build

@@ -1,46 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
+@plugin "daisyui" {
+    themes: retro --default;
+};
 
 @theme {
-    --font-poppins: 'Poppins', sans-serif;
-
-    --primary-color: #8B5E3C;
-    --secondary-color: #D9B99B;
-    --background-color: #F9F6F0;
-    --text-color: #111827;
-
-    --dark-primary-color: #5A3E28;
-    --dark-secondary-color: #B45309;
-    --dark-background-color: #1F2937;
-    --dark-text-color: #F9FAFB;
+    --font-family-poppins: 'Poppins', sans-serif;
 }
 
 * {
-    @apply font-poppins;
-}
-
-.primary-color {
-    background-color: var(--primary-color);
-}
-.secondary-color {
-    background-color: var(--secondary-color);
-}
-.background-color {
-    background-color: var(--background-color);
-}
-.text-color {
-    color: var(--text-color);
-}
-
-.dark-primary-color {
-    background-color: var(--dark-primary-color);
-}
-.dark-secondary-color {
-    background-color: var(--dark-secondary-color);
-}
-.dark-background-color {
-    background-color: var(--dark-background-color);
-}
-.dark-text-color {
-    color: var(--dark-text-color);
+    @apply font-family-poppins;
 }
