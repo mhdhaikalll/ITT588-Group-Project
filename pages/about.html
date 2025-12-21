@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Blueprint | About Us</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" /> -->
+    <link href="../dist/css/output.css" rel="stylesheet"> 
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Header --> 
+    <div x-data x-html="(await (await fetch('../components/header.html')).text())" class="sticky top-0 z-10"></div>
+
+    <!-- Content -->
+    <main class="min-h-screen">
+        <!-- Hero Section -->
+        <div class="hero bg-base-200 min-h-[40vh]">
+            <div class="hero-content text-center">
+                <div class="max-w-2xl">
+                    <h1 class="text-5xl font-bold mb-4">About Daily Blueprint</h1>
+                    <p class="text-lg">
+                        Your daily companion for personal growth and self-improvement
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vision, Mission, Values -->
+        <div class="container mx-auto px-4 py-16 max-w-6xl">
+            <h2 class="text-3xl font-bold text-center mb-12">Vision, Mission & Values</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Vision -->
+                <div class="card bg-base-200 shadow-xl">
+                    <div class="card-body items-center text-center">
+                        <div class="p-4 bg-primary/10 rounded-full mb-4">
+                            <i data-lucide="eye" class="w-8 h-8 text-primary"></i>
+                        </div>
+                        <h3 class="card-title text-xl">Vision</h3>
+                        <p>
+                            To empower individuals worldwide to design their best lives through daily inspiration, 
+                            practical tools, and a supportive community.
+                        </p>
+                    </div>
+                </div>
+                <!-- Mission -->
+                <div class="card bg-base-200 shadow-xl">
+                    <div class="card-body items-center text-center">
+                        <div class="p-4 bg-secondary/10 rounded-full mb-4">
+                            <i data-lucide="target" class="w-8 h-8 text-secondary"></i>
+                        </div>
+                        <h3 class="card-title text-xl">Mission</h3>
+                        <p>
+                            Providing daily motivation, actionable strategies, and proven techniques to help you 
+                            build positive habits and achieve your goals.
+                        </p>
+                    </div>
+                </div>
+                <!-- Values -->
+                <div class="card bg-base-200 shadow-xl">
+                    <div class="card-body items-center text-center">
+                        <div class="p-4 bg-accent/10 rounded-full mb-4">
+                            <i data-lucide="heart" class="w-8 h-8 text-accent"></i>
+                        </div>
+                        <h3 class="card-title text-xl">Values</h3>
+                        <p>
+                            Authenticity, growth mindset, community support, and consistent progress. 
+                            Every small step counts.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About the System -->
+        <div class="bg-base-200 py-16">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="text-3xl font-bold text-center mb-12">About the System</h2>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <div class="space-y-4 text-lg">
+                            <p>
+                                Daily Blueprint is a comprehensive platform designed to help you track your daily activities, 
+                                build consistent habits, and achieve your personal goals. Our system combines simplicity with 
+                                powerful features to support your journey of self-improvement.
+                            </p>
+                            <p>
+                                Whether you're tracking prayers, managing tasks, monitoring productivity, or setting personal goals, 
+                                Daily Blueprint provides the tools you need in one clean, intuitive interface.
+                            </p>
+                            <div class="divider"></div>
+                            <div class="grid md:grid-cols-2 gap-4 mt-6">
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="check-circle" class="w-6 h-6 text-success flex-shrink-0 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-bold">Activity Tracking</h4>
+                                        <p class="text-sm">Monitor your daily tasks and habits effortlessly</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="check-circle" class="w-6 h-6 text-success flex-shrink-0 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-bold">Progress Analytics</h4>
+                                        <p class="text-sm">Visualize your growth with charts and insights</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="check-circle" class="w-6 h-6 text-success flex-shrink-0 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-bold">Prayer Reminders</h4>
+                                        <p class="text-sm">Stay connected with timely prayer notifications</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="check-circle" class="w-6 h-6 text-success flex-shrink-0 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-bold">Simple Interface</h4>
+                                        <p class="text-sm">Clean design that's easy to use every day</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <div class="container mx-auto px-4 py-16 max-w-6xl">
+            <h2 class="text-3xl font-bold text-center mb-4">Meet Our Team</h2>
+            <p class="text-center mb-12">The people behind Daily Blueprint</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="card bg-base-200 shadow-xl">
+                    <figure class="px-6 pt-6">
+                        <div class="avatar">
+                            <div class="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                <img src="https://i.pravatar.cc/150?img=33" alt="Sarah Johnson" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h3 class="card-title">Haikal Iman</h3>
+                        <p class="text-sm text-base-content/70">Lead Developer</p>
+                        <div class="flex gap-2 mt-2">
+                            <i data-lucide="linkedin" class="w-5 h-5 text-primary cursor-pointer"></i>
+                            <i data-lucide="github" class="w-5 h-5 text-primary cursor-pointer"></i>
+                            <i data-lucide="mail" class="w-5 h-5 text-primary cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="card bg-base-200 shadow-xl">
+                    <figure class="px-6 pt-6">
+                        <div class="avatar">
+                            <div class="w-32 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
+                                <img src="https://i.pravatar.cc/150?img=12" alt="Michael Chen" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h3 class="card-title">Faris Ilmam</h3>
+                        <p class="text-sm text-base-content/70">HR Manager</p>
+                        <div class="flex gap-2 mt-2">
+                            <i data-lucide="linkedin" class="w-5 h-5 text-secondary cursor-pointer"></i>
+                            <i data-lucide="twitter" class="w-5 h-5 text-secondary cursor-pointer"></i>
+                            <i data-lucide="mail" class="w-5 h-5 text-secondary cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="card bg-base-200 shadow-xl">
+                    <figure class="px-6 pt-6">
+                        <div class="avatar">
+                            <div class="w-32 rounded-full ring ring-accent ring-offset-base-100 ring-offset-2">
+                                <img src="https://i.pravatar.cc/150?img=47" alt="Emily Rodriguez" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h3 class="card-title">Emily Rodriguez</h3>
+                        <p class="text-sm text-base-content/70">Business Director</p>
+                        <div class="flex gap-2 mt-2">
+                            <i data-lucide="linkedin" class="w-5 h-5 text-accent cursor-pointer"></i>
+                            <i data-lucide="twitter" class="w-5 h-5 text-accent cursor-pointer"></i>
+                            <i data-lucide="mail" class="w-5 h-5 text-accent cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="card bg-base-200 shadow-xl">
+                    <figure class="px-6 pt-6">
+                        <div class="avatar">
+                            <div class="w-32 rounded-full ring ring-info ring-offset-base-100 ring-offset-2">
+                                <img src="https://i.pravatar.cc/150?img=68" alt="David Park" />
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h3 class="card-title">David Park</h3>
+                        <p class="text-sm text-base-content/70">Marketing Lead</p>
+                        <div class="flex gap-2 mt-2">
+                            <i data-lucide="linkedin" class="w-5 h-5 text-info cursor-pointer"></i>
+                            <i data-lucide="instagram" class="w-5 h-5 text-info cursor-pointer"></i>
+                            <i data-lucide="mail" class="w-5 h-5 text-info cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div x-data x-html="(await (await fetch('../components/footer.html')).text())"></div>
+    
+    <!-- Initialize Lucide Icons -->
+    <script>
+        document.addEventListener('alpine:initialized', () => {
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 100);
+        });
+    </script>
+</body>
+</html>

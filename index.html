@@ -7,93 +7,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Blueprint</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <!-- DaisyUI Theme -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" /> -->
     <!-- Tailwind CSS -->
     <link href="./dist/css/output.css" rel="stylesheet" />
     <!-- Alpine.js for component loading -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 
 <body class="min-h-screen flex flex-col">
     <!-- Header Component -->
-    <div x-data x-html="(await (await fetch('./components/Header.html')).text())" class="sticky top-0 z-10"></div>
+    <div x-data x-html="(await (await fetch('./components/header.html')).text())" class="sticky top-0 z-10"></div>
 
     <main class="flex-1">
         <!-- Hero Section -->
-        <div class="hero bg-base-200 min-h-[60vh]">
-            <div class="hero-content text-center">
-                <div class="max-w-md">
-                    <h1 class="text-5xl font-black">Hello There</h1>
-                    <p class="py-6">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Repellendus animi nobis dolorem dolore ullam rem. Provident, alias
-                        quidem saepe ex dolor, doloribus quae repellat quo vero amet
-                        voluptatem magni omnis!
-                    </p>
-                    <button class="btn btn-primary">Get Started</button>
-                </div>
-            </div>
-        </div>
+        <div x-data x-html="(await (await fetch('./components/hero.html')).text())"></div>
         <!-- Cards Section -->
-        <div class="container mx-auto p-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="card bg-base-300 shadow-sm p-6">
-                    <figure class="mb-4 aspect-video bg-base-100 rounded-lg overflow-hidden">
-                        <img src="https://picsum.photos/seed/1/600/300?random=1" alt=""
-                            class="w-full h-full object-contain">
-                    </figure>
-                    <div class="card-body">
-                        <div class="card-title">Title 1</div>
-                        <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, modi
-                            perspiciatis similique dignissimos fuga necessitatibus voluptates rerum obcaecati
-                            doloremque! Minima alias corporis sit blanditiis ratione aliquid ut perferendis incidunt.
-                            Ullam?</p>
-                        <div class="card-actions justify-end mt-4">
-                            <button class="btn btn-primary">Action</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card bg-base-300 shadow-sm p-6">
-                    <figure class="mb-4 aspect-video bg-base-100 rounded-lg overflow-hidden">
-                        <img src="https://picsum.photos/seed/2/600/300?random=2" alt=""
-                            class="w-full h-full object-contain">
-                    </figure>
-                    <div class="card-body">
-                        <div class="card-title">Title 2</div>
-                        <p class="text-justify">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit
-                            doloremque consequuntur cupiditate inventore ex magni beatae atque voluptatibus enim,
-                            dolores qui dignissimos architecto tempora! Dolorem laudantium asperiores doloribus nobis
-                            culpa.</p>
-                        <div class="card-actions justify-end mt-4">
-                            <button class="btn btn-primary">Action</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card bg-base-300 shadow-sm p-6">
-                    <figure class="mb-4 aspect-video bg-base-100 rounded-lg overflow-hidden">
-                        <img src="https://picsum.photos/seed/3/600/300?random=3" alt=""
-                            class="w-full h-full object-contain">
-                    </figure>
-                    <div class="card-body">
-                        <div class="card-title">Title 3</div>
-                        <p class="text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium,
-                            ratione. Eius neque odio assumenda non fugiat necessitatibus iure, molestiae explicabo
-                            temporibus voluptates consectetur. Odit facere similique reiciendis voluptatem tempore
-                            minus!</p>
-                        <div class="card-actions justify-end mt-4">
-                            <button class="btn btn-primary">Action</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Empty Div to Push Footer to Bottom -->
-        <div class=""></div>
+        <div x-data x-html="(await (await fetch('./components/cards.html')).text())"></div>
+        <!-- Hero Second Section -->
+        <div x-data x-html="(await (await fetch('./components/hero-second.html')).text())"></div>
     </main>
 
     <!-- Footer Component -->
-    <div x-data x-html="(await (await fetch('./components/Footer.html')).text())"></div>
+    <div x-data x-html="(await (await fetch('./components/footer.html')).text())"></div>
+
+    <!-- Chart.js Initialization -->
+    <script>
+        // Wait for Alpine to load the hero component
+        document.addEventListener('alpine:initialized', () => {
+            setTimeout(() => {
+                const ctx = document.getElementById('hero-graph');
+                if (ctx) {
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                            datasets: [{
+                                label: 'Productivity',
+                                data: [3, 4, 2, 5, 4, 6, 5],
+                                borderColor: 'rgba(59, 130, 246, 1)',
+                                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                                fill: true,
+                                tension: 0.4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    max: 10
+                                },
+                                x: {
+                                    grid: {
+                                        display: false
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }, 100); // Small delay to ensure DOM is ready
+        });
+    </script>
 </body>
 
 </html>

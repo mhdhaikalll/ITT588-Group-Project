@@ -3,22 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Template Docs</title>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" /> -->
+    <title>Daily Blueprint | Activity</title>
     <link href="../dist/css/output.css" rel="stylesheet"> 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
 </head>
 <body>
     <!-- TODO: Content goes here -->
-    <!-- Header --> 
     <div x-data x-html="(await (await fetch('../components/header.html')).text())" class="sticky top-0 z-10"></div>
 
-    <!-- Content -->
-    <main class="bg-base-200 min-h-screen p-4">
+    <main>
 
     </main>
 
-    <!-- Footer -->
     <div x-data x-html="(await (await fetch('../components/footer.html')).text())" class="fixed bottom-0 w-full"></div>
 </body>
 </html>

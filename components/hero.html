@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> </head>
+
+<body>
+  <div class="hero bg-base-200 min-h-[60vh]">
+    <div class="hero-content grid md:grid-cols-2 grid-cols-1 grid-rows-1 gap-8">
+      <div class="text-left p-4">
+        <h1 class="text-5xl font-black">Welcome to Daily Blueprint</h1>
+        <p class="py-6">
+          Your daily source of inspiration and motivation. At Daily Blueprint,
+          we believe that every day is an opportunity to build a better version
+          of yourself. Join us on this journey of self-improvement and
+          discover the tools, tips, and strategies to help you achieve your
+          goals and live your best life.
+        </p>
+        <button class="btn btn-primary">Get Started</button>
+      </div>
+      <div class="p-4 max-w-md">
+        <div class="mockup-browser border border-base-300 w-full bg-base-100 shadow-lg">
+          <div class="mockup-browser-toolbar">
+            <div class="input">https://dailyblueprint.org</div>
+          </div>
+          <div class="grid grid-cols-2 grid-rows-2 gap-4 h-80 p-4">
+            <div class="card bg-base-200 p-4 shadow-md">
+              <div class="card-content">
+                <div class="card-title text-xs">Today's Focus</div>
+                <div class="mt-2 text-sm font-bold">Water Intake</div>
+                <div class="mt-1">
+                  <progress class="progress progress-info w-full border" value="5" max="7"></progress>
+                </div>
+                <p class="text-gray-400 text-xs">Goal: 3L</p>
+              </div>
+            </div>
+            <div class="card bg-base-200 p-4 shadow-md">
+              <div class="card-content">
+                <div class="card-title text-xs">Daily Prayer</div>
+                <div class="mt-2 flex flex-col flex-wrap gap-2 overflow-none h-20">
+                  <label class="label text-xs"><input type="checkbox" name="prayer" id="prayer"
+                      class="checkbox checkbox-xs checkbox-secondary" checked>Fajr</label>
+                  <label class="label text-xs"><input type="checkbox" name="prayer" id="prayer"
+                      class="checkbox checkbox-xs checkbox-secondary" checked>Dhuhr</label>
+                  <label class="label text-xs"><input type="checkbox" name="prayer" id="prayer"
+                      class="checkbox checkbox-xs">Asr</label>
+                  <label class="label text-xs"><input type="checkbox" name="prayer" id="prayer"
+                      class="checkbox checkbox-xs">Maghrib</label>
+                  <label class="label text-xs"><input type="checkbox" name="prayer" id="prayer"
+                      class="checkbox checkbox-xs">Isha</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-2 row-start-2 card bg-base-200 p-4 shadow-md">
+              <div class="card-content">
+                <div class="card-title text-xs">Progress</div>
+              </div>
+              <canvas id="hero-graph" class="w-full h-48"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
