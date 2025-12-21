@@ -4,13 +4,43 @@
 @theme {
     --font-poppins: 'Poppins', sans-serif;
 
-    --primary-color: #1E40AF;
-    --secondary-color: #F59E0B;
-    --background-color: #F3F4F6;
+    --primary-color: #8B5E3C;
+    --secondary-color: #D9B99B;
+    --background-color: #F9F6F0;
     --text-color: #111827;
 
+    --dark-primary-color: #5A3E28;
+    --dark-secondary-color: #B45309;
+    --dark-background-color: #1F2937;
+    --dark-text-color: #F9FAFB;
 }
 
 * {
     @apply font-poppins;
+}
+
+.primary-color {
+    background-color: var(--primary-color);
+}
+.secondary-color {
+    background-color: var(--secondary-color);
+}
+.background-color {
+    background-color: var(--background-color);
+}
+.text-color {
+    color: var(--text-color);
+}
+
+.dark-primary-color {
+    background-color: var(--dark-primary-color);
+}
+.dark-secondary-color {
+    background-color: var(--dark-secondary-color);
+}
+.dark-background-color {
+    background-color: var(--dark-background-color);
+}
+.dark-text-color {
+    color: var(--dark-text-color);
 }

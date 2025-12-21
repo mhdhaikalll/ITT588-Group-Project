@@ -13,7 +13,7 @@ Strictly used within this group assignment
 project-root/
 ├── assets/             # Static assets
 │   ├── css/
-│   │   └── global.css  # Tailwind input file and global configuration
+│   │   └── global.css  # Tailwind input file and DaisyUI global configuration
 │   ├── images/
 │       ├── icons/      # SVG, Favicons
 │       └── photos/     # Photos assets
@@ -35,8 +35,10 @@ project-root/
 ## Tech Stack Used
 
 - HTML5
-- CSS3 boosted with TailwindCSS
-- JavaScript with Alpine JS
+- CSS3
+- [TailwindCSS](https://tailwindcss.com/)
+- [DaisyUI](https://daisyui.com/)
+- [JavaScript with Alpine JS](https://alpinejs.dev/)
 
 ## Instruction
 
@@ -48,21 +50,30 @@ project-root/
 
 2. Read Git-Guide.md for a full guide on using Git
 
-3. Run both of this commands to download dependencies enable TailwindCSS.
+3. Run this commands to download the dependencies for enabling TailwindCSS.
 
     ```bash
     npm install
-    npx @tailwindcss/cli -i ./assets/css/global.css -o ./dist/css/output.css --watch
     ```
 
-4. Do not commit directly onto the main branch.
+4. Run this command to open local development server
 
-5. Any issue, please contact me directly.
+    ```bash
+    npm run dev
+    ```
+
+5. Open the HTML file on http://localhost:3002 
+
+6. Do not commit directly onto the main branch.
+
+7. Any issue, please contact me directly.
 
 ## Issue No.1
 
 Please add this onto each of new HTML file everytime you guys need to create a page or components
+
 ```html
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
 <link href="../dist/css/output.css" rel="stylesheet">
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
 ```
@@ -72,12 +83,6 @@ This is to enable both TailwindCSS and Alpine.js
 OR
 
 Just copy and paste the template.html inside /pages and then rename it onto your desire namefile.
-
-## Issue No.2
-
-In order for you to see the changes without reloading the page each time, use Live Preview extension on VS Code.
-
-If you are using PHP Serve, it doesn't reload automatically with each changes.
 
 ## Git Documentation
 
