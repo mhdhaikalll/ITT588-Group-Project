@@ -62,7 +62,7 @@ project-root/
     npm run dev
     ```
 
-5. Open the HTML file on http://localhost:3002 
+5. Open the HTML file on http://localhost:3000 
 
 6. Do not commit directly onto the main branch.
 
