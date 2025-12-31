@@ -46,7 +46,7 @@ project-root/
 ## Instruction
 
 >[!WARNING]
->Please don't commit directly onto the main branch. Do a push request and make sure it does not have any merge conflict issue
+>Please don't commit directly onto the main branch. Do a pull request and make sure it does not have any merge conflict issue
 
 1. Clone this repository
 
