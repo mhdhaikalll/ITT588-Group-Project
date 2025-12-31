@@ -6,7 +6,7 @@ This repository contains the self made HTML template and documentation to help g
 
 ## This is a guidance on using this HTML template
 
->[NOTE!]
+>[!NOTE]
 >Strictly used within this group assignment
 
 ```bash
@@ -68,7 +68,7 @@ project-root/
 5. Open the HTML file on http://localhost:3000 
 
 6. Do not commit directly onto the main branch.
-    >[WARNING!]
+    >[!WARNING]
     >Please don't commit directly onto the main branch. Do a push request and make sure it does not have any merge conflict issue
 
 7. Any issue, please contact me directly.
