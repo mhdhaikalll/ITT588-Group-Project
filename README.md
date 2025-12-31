@@ -6,30 +6,33 @@ This repository contains the self made HTML template and documentation to help g
 
 ## This is a guidance on using this HTML template
 
-Strictly used within this group assignment
+>[NOTE!]
+>Strictly used within this group assignment
 
 ```bash
 # Project Folder Structure
 project-root/
-├── assets/             # Static assets
+├── assets/                             # Static assets
 │   ├── css/
-│   │   └── global.css  # Tailwind input file and DaisyUI global configuration
+│   │   └── global.css                  # Tailwind input file and DaisyUI global configuration
 │   ├── images/
-│       ├── icons/      # SVG, Favicons
-│       └── photos/     # Photos assets
-├── components/         # Reusable HTML & JS components (Header, Footer)
-├── dist/               # Compiled assets
+│       ├── icons/                      # SVG, Favicons
+│       └── photos/                     # Photos assets
+├── components/                         # Reusable HTML & JS components (Header, Footer)
+│   └── template-component.html         # Template used to create a component
+├── dist/                               # Compiled assets
 │   └── css/
-│       └── output.css  # Tailwind output file
-├── node_modules/       # Dependencies modules
-├── pages/              # HTML pages
-├── public/             # Public assets
-├── .gitignore          # Ignore certain folder on commit
-├── Git-Guide.md        # Git documentation
-├── index.html          # Index page
+│       └── output.css                  # Tailwind output file
+├── node_modules/                       # Dependencies modules
+├── pages/                              # HTML pages
+│   └── template.html                   # Template used to create a page
+├── public/                             # Public assets
+├── .gitignore                          # Ignore certain folder on commit
+├── Git-Guide.md                        # Git documentation
+├── index.html                          # Index page
 ├── package-lock.json
-├── package.json        # Dependencies
-├── README.md           # Official documentation
+├── package.json                        # Dependencies
+├── README.md                           # Official documentation
 ```
 
 ## Tech Stack Used
@@ -65,6 +68,8 @@ project-root/
 5. Open the HTML file on http://localhost:3000 
 
 6. Do not commit directly onto the main branch.
+    >[WARNING!]
+    >Please don't commit directly onto the main branch. Do a push request and make sure it does not have any merge conflict issue
 
 7. Any issue, please contact me directly.
 
@@ -83,6 +88,16 @@ This is to enable all the dependencies using CDN
 OR
 
 Just copy and paste the template.html inside /pages and then rename it onto your desire namefile.
+
+## How Do I Use A Component / Modular HTML?
+
+In order to use a component inside a page, use this line of code:
+
+```html
+<div x-data x-html="(await (await fetch('./components/<name>.html')).text())"></div>
+```
+
+Replace "name" with your desired component.
 
 ## Git Documentation
 
