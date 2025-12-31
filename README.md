@@ -45,6 +45,9 @@ project-root/
 
 ## Instruction
 
+>[!WARNING]
+>Please don't commit directly onto the main branch. Do a push request and make sure it does not have any merge conflict issue
+
 1. Clone this repository
 
     ```bash
@@ -68,9 +71,6 @@ project-root/
 5. Open the HTML file on http://localhost:3000 
 
 6. Do not commit directly onto the main branch.
-
-    >[!WARNING]
-    >Please don't commit directly onto the main branch. Do a push request and make sure it does not have any merge conflict issue
 
 7. Any issue, please contact me directly.
 
