@@ -95,10 +95,10 @@ Just copy and paste the template.html inside /pages and then rename it onto your
 In order to use a component inside a page, use this line of code:
 
 ```html
-<div x-data x-html="(await (await fetch('./components/<name>.html')).text())"></div>
+<div data-component="<name>.html" data-base-path="."></div>
 ```
 
-Replace "name" with your desired component.
+Replace "name" with your desired component and replace "." with the path either .. or .
 
 ## Git Documentation
 
