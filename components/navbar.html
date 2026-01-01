@@ -1,0 +1,75 @@
+<!-- Navbar Component -->
+<header class="navbar bg-base-100 shadow-lg sticky top-0 z-50 no-print">
+    <div class="navbar-start">
+        <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden" aria-label="Menu">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </div>
+            <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-2 shadow-lg">
+                <li><a :href="basePath + '/'" class="font-medium" :class="activePage === 'home' ? 'text-primary' : ''">Home</a></li>
+                <li><a :href="basePath + '/pages/track.html'" class="font-medium" :class="activePage === 'track' ? 'text-primary' : ''">Track Habits</a></li>
+                <li><a :href="basePath + '/pages/about.html'" class="font-medium" :class="activePage === 'about' ? 'text-primary' : ''">About Us</a></li>
+            </ul>
+        </div>
+        <a :href="basePath + '/'" class="btn btn-ghost text-xl gap-1">
+            <i class="fa-solid fa-bullseye text-primary"></i>
+            Daily<span class="text-primary">Blueprint</span>
+        </a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1 gap-2">
+            <li><a :href="basePath + '/'" class="font-medium hover:text-primary transition-colors" :class="activePage === 'home' ? 'text-primary' : ''">Home</a></li>
+            <li><a :href="basePath + '/pages/track.html'" class="font-medium hover:text-primary transition-colors" :class="activePage === 'track' ? 'text-primary' : ''">Track Habits</a></li>
+            <li><a :href="basePath + '/pages/about.html'" class="font-medium hover:text-primary transition-colors" :class="activePage === 'about' ? 'text-primary' : ''">About Us</a></li>
+        </ul>
+    </div>
+    <div class="navbar-end gap-2">
+        <!-- Export Button (shown on track page) -->
+        <template x-if="showExportButton">
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle" aria-label="Export options">
+                    <i class="fa-solid fa-download text-lg"></i>
+                </div>
+                <ul tabindex="0" class="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-lg mt-3">
+                    <li><button @click="printReport()" class="gap-2"><i class="fa-solid fa-print"></i> Print Report</button></li>
+                    <li><button @click="downloadReport()" class="gap-2"><i class="fa-solid fa-file-arrow-down"></i> Download PDF</button></li>
+                </ul>
+            </div>
+        </template>
+        
+        <!-- Theme Selector Dropdown -->
+        <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-circle" aria-label="Theme selector">
+                <i class="fa-solid fa-palette text-lg"></i>
+            </div>
+            <div tabindex="0" class="dropdown-content bg-base-200 rounded-box z-1 w-64 p-4 shadow-lg mt-3">
+                <h3 class="font-bold text-sm mb-3">Choose Theme</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <template x-for="theme in themes" :key="theme.name">
+                        <button 
+                            class="btn btn-sm justify-start gap-2"
+                            :class="currentTheme === theme.name ? 'btn-primary' : 'btn-ghost'"
+                            @click="setTheme(theme.name)"
+                        >
+                            <span class="w-3 h-3 rounded-full" :style="'background:' + theme.color"></span>
+                            <span x-text="theme.label" class="text-xs"></span>
+                        </button>
+                    </template>
+                </div>
+                <div class="divider my-2 text-xs">Accessibility</div>
+                <div class="grid grid-cols-1 gap-2">
+                    <template x-for="theme in accessibleThemes" :key="theme.name">
+                        <button 
+                            class="btn btn-sm justify-start gap-2"
+                            :class="currentTheme === theme.name ? 'btn-primary' : 'btn-ghost'"
+                            @click="setTheme(theme.name)"
+                        >
+                            <i class="fa-solid fa-eye text-xs"></i>
+                            <span x-text="theme.label" class="text-xs"></span>
+                        </button>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

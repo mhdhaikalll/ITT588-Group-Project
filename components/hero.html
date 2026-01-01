@@ -1,66 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head> </head>
-
-<body>
-  <div class="hero bg-base-200 min-h-[60vh]">
-    <div class="hero-content grid md:grid-cols-2 grid-cols-1 grid-rows-1 gap-8">
-      <div class="text-left p-4">
-        <h1 class="text-5xl font-black">Welcome to Daily Blueprint</h1>
-        <p class="py-6">
-          Your daily source of inspiration and motivation. At Daily Blueprint,
-          we believe that every day is an opportunity to build a better version
-          of yourself. Join us on this journey of self-improvement and
-          discover the tools, tips, and strategies to help you achieve your
-          goals and live your best life.
-        </p>
-        <button class="btn btn-primary">Get Started</button>
+<section class="min-h-[80vh] hero bg-base-200">
+  <div class="hero-content flex flex-col lg:flex-row gap-12 lg:gap-24">
+    <div class="flex-1 lg:w-1/2 ">
+      <h1 class="lg:text-6xl text-4xl font-bold mb-4 text-center lg:text-left">Track Your Habits <span class="text-primary">Effortlessly</span></h1>
+      <p class="mb-6 text-lg text-center lg:text-left">Stay on top of your daily routines with our intuitive habit tracker. Visualize your progress and maintain your streaks to build lasting habits.</p>
+      <div class="flex gap-4 lg:justify-start justify-center">
+        <a :href="basePath + '/pages/track.html'" class="btn btn-primary btn-md"><i class="fa fa-play mr-3"></i>Start Tracking Now</a>
+        <a href="#features" class="btn btn-outline btn-md"><i class="fa fa-info mr-3"></i>More Info</a>
       </div>
-      <div class="p-4 max-w-md">
-        <div class="mockup-browser border border-base-300 w-full bg-base-100 shadow-lg">
-          <div class="mockup-browser-toolbar">
-            <div class="input">https://dailyblueprint.org</div>
-          </div>
-          <div class="grid grid-cols-2 grid-rows-2 gap-4 h-80 p-4">
-            <div class="card bg-base-200 p-4 shadow-md">
-              <div class="card-content">
-                <div class="card-title text-xs">Today's Focus</div>
-                <div class="mt-2 text-sm font-bold">Water Intake</div>
-                <div class="mt-1">
-                  <progress class="progress progress-info w-full border" value="5" max="7"></progress>
-                </div>
-                <p class="text-gray-400 text-xs">Goal: 3L</p>
+    </div>
+    <div class="flex-1 lg:w-1/2">
+      <div class="mockup-browser bg-base-100 border border-base-300 shadow-xl">
+        <div class="mockup-browser-toolbar">
+          <div class="input text-sm">dailyblueprint.com/track</div>
+        </div>
+        <div class="bg-base-200 p-4">
+          <div class="grid grid-cols-2 gap-4">
+            <!-- Card A -->
+            <div class="card bg-base-100 p-4 shadow">
+              <div class="flex items-center gap-2 mb-2">
+                <i class="fa-solid fa-fire text-warning"> </i>
+                <span class="text-xs font-bold">7 Day Streak!</span>
               </div>
+              <progress value="3" max="7" class="progress progress-warning w-full"></progress>
             </div>
-            <div class="card bg-base-200 p-4 shadow-md">
-              <div class="card-content">
-                <div class="card-title text-xs">Daily Prayer</div>
-                <div class="mt-2 flex flex-col flex-wrap gap-2 overflow-none h-20">
-                  <label class="label text-xs"><input type="checkbox" name="prayer" id="prayer"
-                      class="checkbox checkbox-xs checkbox-secondary" checked>Fajr</label>
-                  <label class="label text-xs"><input type="checkbox" name="prayer" id="prayer"
-                      class="checkbox checkbox-xs checkbox-secondary" checked>Dhuhr</label>
-                  <label class="label text-xs"><input type="checkbox" name="prayer" id="prayer"
-                      class="checkbox checkbox-xs">Asr</label>
-                  <label class="label text-xs"><input type="checkbox" name="prayer" id="prayer"
-                      class="checkbox checkbox-xs">Maghrib</label>
-                  <label class="label text-xs"><input type="checkbox" name="prayer" id="prayer"
-                      class="checkbox checkbox-xs">Isha</label>
-                </div>
+            <!-- Card B -->
+            <div class="card bg-base-100 p-4 shadow">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="fa fa-tint text-info"></div>
+                <span class="text-xs font-bold">Water Intake</span>
               </div>
+              <progress value="240" max="320" class="progress progress-info w-full"></progress>
+              <span class="text-xs font-medium mt-2">2.4l / 3.2l</span>
             </div>
-            <div class="col-span-2 row-start-2 card bg-base-200 p-4 shadow-md">
-              <div class="card-content">
-                <div class="card-title text-xs">Progress</div>
+            <!-- Card C -->
+            <div class="col-span-2 card bg-base-100 p-4 shadow">
+              <div class="text-xs font-bold mb-2">Weekly Progress</div>
+              <div class="w-full h-24">
+                <canvas id="weeklyChart" class="w-full h-full"></canvas>
               </div>
-              <canvas id="hero-graph" class="w-full h-48"></canvas>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
-
-</html>
+</section>

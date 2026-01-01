@@ -24,9 +24,7 @@
     "@tailwindcss/cli": "^4.1.17",
     "alpinejs": "^3.15.2",
     "browser-sync": "^3.0.4",
-    "chartjs": "^0.3.24",
     "concurrently": "^9.2.1",
-    "lucide": "^0.562.0",
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {

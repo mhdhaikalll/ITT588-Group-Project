@@ -9,72 +9,112 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!-- Tailwind CSS -->
     <link href="./dist/css/output.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Theme Controller & Component Loader -->
+    <script src="./assets/js/theme-controller.js"></script>
     <!-- Alpine.js for component loading -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 
-<body class="min-h-screen flex flex-col">
-    <!-- Header Component -->
-    <div x-data x-html="(await (await fetch('./components/header.html')).text())" class="sticky top-0 z-10"></div>
-
+<body class="min-h-screen" x-data="{...themeController(), basePath: '.', activePage: 'Home'}" x-init="initTheme()">
+    <div data-component="navbar.html" data-base-path="." class="sticky z-10"></div>
+    
     <main class="flex-1">
-        <!-- Hero Section -->
-        <div x-data x-html="(await (await fetch('./components/hero.html')).text())"></div>
-        <!-- Cards Section -->
-        <div x-data x-html="(await (await fetch('./components/cards.html')).text())"></div>
-        <!-- Hero Second Section -->
-        <div x-data x-html="(await (await fetch('./components/hero-second.html')).text())"></div>
+        <div data-component="hero.html" data-base-path=".."></div>
+        <div data-component="feature.html" data-base-path=".."></div>
+        <div data-component="tutorial.html" data-base-path=".."></div>
+        <div data-component="cta.html" data-base-path=".."></div>
     </main>
 
-    <!-- Footer Component -->
-    <div x-data x-html="(await (await fetch('./components/footer.html')).text())"></div>
+    <div data-component="footer.html" data-base-path="."></div>
 
-    <!-- Chart.js Initialization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Wait for Alpine to load the hero component
-        document.addEventListener('alpine:initialized', () => {
-            setTimeout(() => {
-                const ctx = document.getElementById('hero-graph');
-                if (ctx) {
-                    new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                            datasets: [{
-                                label: 'Productivity',
-                                data: [3, 4, 2, 5, 4, 6, 5],
-                                borderColor: 'rgba(59, 130, 246, 1)',
-                                backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                                fill: true,
-                                tension: 0.4
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: {
-                                    display: false
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    max: 10
-                                },
-                                x: {
-                                    grid: {
-                                        display: false
-                                    }
-                                }
-                            }
-                        }
-                    });
+      // Get DaisyUI theme colors by reading from styled elements
+      function getDaisyUIColors() {
+        const tempEl = document.createElement('div');
+        tempEl.style.display = 'none';
+        document.body.appendChild(tempEl);
+        
+        const colorMap = {
+          success: 'bg-success',
+          warning: 'bg-warning', 
+          error: 'bg-error'
+        };
+        
+        const colors = {};
+        for (const [key, className] of Object.entries(colorMap)) {
+          tempEl.className = className;
+          colors[key] = getComputedStyle(tempEl).backgroundColor;
+        }
+        
+        document.body.removeChild(tempEl);
+        return colors;
+      }
+
+      let weeklyChart = null;
+
+      // Wait for components to load, then initialize chart
+      function initWeeklyChart() {
+        const canvas = document.getElementById('weeklyChart');
+        if (canvas) {
+          const colors = getDaisyUIColors();
+          const ctx = canvas.getContext('2d');
+          weeklyChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+              labels: ['Completed', 'In Progress', 'Missed'],
+              datasets: [{
+                data: [65, 20, 15],
+                backgroundColor: [colors.success, colors.warning, colors.error],
+                borderWidth: 0
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: true,
+                  position: 'right',
+                  labels: {
+                    boxWidth: 12,
+                    font: { size: 10 }
+                  }
                 }
-            }, 100); // Small delay to ensure DOM is ready
+              }
+            }
+          });
+        } else {
+          // Retry after components load
+          setTimeout(initWeeklyChart, 100);
+        }
+      }
+
+      // Update chart colors when theme changes
+      function updateChartColors() {
+        if (weeklyChart) {
+          const colors = getDaisyUIColors();
+          weeklyChart.data.datasets[0].backgroundColor = [colors.success, colors.warning, colors.error];
+          weeklyChart.update();
+        }
+      }
+
+      // Watch for theme changes
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === 'data-theme') {
+            // Small delay to let CSS variables update
+            setTimeout(updateChartColors, 50);
+          }
         });
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        initWeeklyChart();
+        observer.observe(document.documentElement, { attributes: true });
+      });
     </script>
 </body>
 
