@@ -1,31 +1,53 @@
 <section class="py-16 px-4 bg-base-200">
-    <div class="container mx-auto max-w-6xl">
-        <div class="text-center mb-12">
+    <div class="container mx-auto max-w-5xl">
+        <div class="text-center mb-2">
             <h2 class="text-3xl lg:text-4xl font-bold mb-4">How It Works</h2>
             <p class="text-lg opacity-70">Simple steps to start building better habits</p>
         </div>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="text-center">
-                <div
-                    class="w-16 h-16 bg-primary text-primary-content rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                    1</div>
-                <h3 class="text-xl font-bold mb-2">Create Your Habits</h3>
-                <p class="opacity-70">Add the habits you want to track with custom names and frequencies.</p>
-            </div>
-            <div class="text-center">
-                <div
-                    class="w-16 h-16 bg-secondary text-secondary-content rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                    2</div>
-                <h3 class="text-xl font-bold mb-2">Track Daily</h3>
-                <p class="opacity-70">Mark your habits as complete each day to build your streak.</p>
-            </div>
-            <div class="text-center">
-                <div
-                    class="w-16 h-16 bg-accent text-accent-content rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                    3</div>
-                <h3 class="text-xl font-bold mb-2">Review Progress</h3>
-                <p class="opacity-70">View your analytics and celebrate your achievements.</p>
-            </div>
-        </div>
+        
+        <ul class="timeline timeline-vertical lg:timeline-horizontal w-full justify-center">
+            <!-- Step 1 -->
+            <li>
+                <div class="timeline-middle">
+                    <div class="w-14 h-14 lg:w-12 lg:h-12 bg-primary text-primary-content rounded-full flex items-center justify-center text-2xl lg:text-xl font-bold shadow-lg">
+                        1
+                    </div>
+                </div>
+                <div class="timeline-start lg:timeline-end timeline-box bg-base-100 shadow-md py-5 px-5 lg:max-w-64 text-end lg:text-start">
+                    <div class="text-base font-bold mb-1">Create Your Habits</div>
+                    <p class="opacity-70 text-sm leading-relaxed">Define habits with custom names and frequencies.</p>
+                </div>
+                <hr class="bg-primary"/>
+            </li>
+            
+            <!-- Step 2 -->
+            <li>
+                <hr class="bg-secondary"/>
+                <div class="timeline-middle">
+                    <div class="w-14 h-14 lg:w-12 lg:h-12 bg-secondary text-secondary-content rounded-full flex items-center justify-center text-2xl lg:text-xl font-bold shadow-lg">
+                        2
+                    </div>
+                </div>
+                <div class="timeline-end timeline-box bg-base-100 shadow-md py-5 px-5 lg:max-w-64">
+                    <div class="text-base font-bold mb-1">Track Daily</div>
+                    <p class="opacity-70 text-sm leading-relaxed">Check off habits each day to build your streak.</p>
+                </div>
+                <hr class="bg-accent"/>
+            </li>
+            
+            <!-- Step 3 -->
+            <li>
+                <hr class="bg-accent"/>
+                <div class="timeline-middle">
+                    <div class="w-14 h-14 lg:w-12 lg:h-12 bg-accent text-accent-content rounded-full flex items-center justify-center text-2xl lg:text-xl font-bold shadow-lg">
+                        3
+                    </div>
+                </div>
+                <div class="timeline-start lg:timeline-end timeline-box bg-base-100 shadow-md py-5 px-5 lg:max-w-64 text-end lg:text-start">
+                    <div class="text-base font-bold mb-1">Review Progress</div>
+                    <p class="opacity-70 text-sm leading-relaxed">View analytics and celebrate achievements.</p>
+                </div>
+            </li>
+        </ul>
     </div>
 </section>

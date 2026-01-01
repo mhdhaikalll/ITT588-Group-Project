@@ -17,8 +17,8 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
 </head>
 
-<body class="min-h-screen" x-data="{...themeController(), basePath: '.', activePage: 'Home'}" x-init="initTheme()">
-    <div data-component="navbar.html" data-base-path="." class="sticky z-10"></div>
+<body class="min-h-screen" x-data="{...themeController(), basePath: '.', activePage: 'home'}" x-init="initTheme()">
+    <div data-component="navbar.html" data-base-path="." class="sticky top-0 z-50"></div>
     
     <main class="flex-1">
         <div data-component="hero.html" data-base-path=".."></div>
@@ -27,7 +27,7 @@
         <div data-component="cta.html" data-base-path=".."></div>
     </main>
 
-    <div data-component="footer.html" data-base-path="."></div>
+    <div data-component="footer-home.html" data-base-path="."></div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
