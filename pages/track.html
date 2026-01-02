@@ -4,18 +4,282 @@
     <!-- Meta Tag -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daily Blueprint | Template</title>
+    <title>Daily Blueprint | Track Habits</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!-- Tailwind CSS -->
-    <link href="./dist/css/output.css" rel="stylesheet" />
+    <link href="../dist/css/output.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <!-- Theme Controller & Component Loader -->
-    <script src="./assets/js/theme-controller.js"></script>
+    <script src="../assets/js/theme-controller.js"></script>
     <!-- Alpine.js for component loading -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
 </head>
-<body>
-    
+<body class="min-h-screen flex flex-col bg-base-300" x-data="habitTracker()" x-init="init()">
+    <!-- Navbar -->
+    <div data-component="navbar.html" data-base-path=".." class="sticky top-0 z-50"></div>
+
+    <!-- Main Content -->
+    <main class="flex-1 container mx-auto px-4 py-6 mt-8 max-w-4xl">
+        <!-- Date and Stats Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+            <div class="container">
+                <h1 class="text-2xl lg:text-3xl font-bold">Your Habits</h1>
+                <p class="text-sm opacity-70" x-text="formatDate(currentDate)"></p>
+            </div>
+            <div class="flex gap-2">
+                <button class="btn btn-ghost btn-sm" aria-label="Previous Day" @click="previousDay()">
+                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                </button>
+                <button class="btn btn-outline btn-sm" aria-label="Today" @click="goToToday()">Today</button>
+                <button class="btn btn-ghost btn-sm" aria-label="Next Day" @click="nextDay()" :disabled="isToday()">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <!-- Total Habits -->
+            <div class="stat bg-base-200 rounded-box p-4">
+                <div class="stat-figure text-primary">
+                    <i class="fa-solid fa-list-check text-2xl"></i>
+                </div>
+                <div class="stat-title text-xs">Total Habits</div>
+                <div class="stat-value text-2xl" x-text="habits.length">0</div>
+            </div>
+            <!-- Completed Today -->
+            <div class="stat bg-base-200 rounded-box p-4">
+                <div class="stat-figure text-success">
+                    <i class="fa-solid fa-circle-check text-2xl"></i>
+                </div>
+                <div class="stat-title text-xs">Completed</div>
+                <div class="stat-value text-2xl" x-text="getCompletedCount()">0</div>
+            </div>
+            <!-- Completion Rate -->
+            <div class="stat bg-base-200 rounded-box p-4">
+                <div class="stat-figure text-info">
+                    <i class="fa-solid fa-percent text-2xl"></i>
+                </div>
+                <div class="stat-title text-xs">Completion</div>
+                <div class="stat-value text-2xl"><span x-text="getCompletionRate()">0</span>%</div>
+            </div>
+            <!-- Best Streak -->
+            <div class="stat bg-base-200 rounded-box p-4">
+                <div class="stat-figure text-warning">
+                    <i class="fa-solid fa-fire text-2xl" :class="getBestStreak() >= 7 ? 'animate-fire' : ''"></i>
+                </div>
+                <div class="stat-title text-xs">Best Streak</div>
+                <div class="stat-value text-2xl"><span x-text="getBestStreak()">0</span> <span class="text-sm font-normal">days</span></div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mb-6">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium">Today's Progress</span>
+                <span class="text-sm opacity-70" x-text="getCompletedCount() + '/' + habits.length + ' habits'"></span>
+            </div>
+            <progress 
+                class="progress progress-primary w-full h-3" 
+                :value="getCompletionRate()" 
+                max="100"
+            ></progress>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid lg:grid-cols-3 gap-6">
+            <!-- Habits List -->
+            <div class="lg:col-span-2 space-y-4">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-bold">Habit List</h2>
+                    <button @click="openAddModal()" class="btn btn-primary btn-sm gap-2">
+                        <i class="fa-solid fa-plus text-sm"></i>
+                        Add Habit
+                    </button>
+                </div>
+
+                <!-- Empty State -->
+                <template x-if="habits.length === 0">
+                    <div class="card bg-base-200 p-8 text-center">
+                        <i class="fa-solid fa-clipboard-list text-5xl mx-auto mb-4 opacity-50"></i>
+                        <h3 class="text-lg font-bold mb-2">No habits yet!</h3>
+                        <p class="opacity-70 mb-4">Start by adding your first habit to track.</p>
+                        <button @click="openAddModal()" class="btn btn-primary gap-2">
+                            <i class="fa-solid fa-plus text-sm"></i>
+                            Add Your First Habit
+                        </button>
+                    </div>
+                </template>
+
+                <!-- Habits List -->
+                <template x-for="habit in habits" :key="habit.id">
+                    <div class="card bg-base-200 shadow hover:shadow-lg transition-shadow animate-fade-in">
+                        <div class="card-body p-4">
+                            <div class="flex items-start gap-4">
+                                <!-- Checkbox -->
+                                <div class="flex-shrink-0 pt-1">
+                                    <input 
+                                        type="checkbox" 
+                                        class="checkbox checkbox-primary checkbox-lg"
+                                        :checked="isHabitCompleted(habit.id)"
+                                        @change="toggleHabit(habit.id)"
+                                        :aria-label="'Mark ' + habit.name + ' as complete'"
+                                    />
+                                </div>
+                                <!-- Content -->
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <h3 class="font-bold text-lg" :class="isHabitCompleted(habit.id) ? 'line-through opacity-50' : ''" x-text="habit.name"></h3>
+                                        <template x-if="getHabitStreak(habit.id) >= 3">
+                                            <div class="badge badge-warning gap-1">
+                                                <i class="fa-solid fa-fire text-xs"></i>
+                                                <span x-text="getHabitStreak(habit.id)"></span>
+                                            </div>
+                                        </template>
+                                    </div>
+                                    <p class="text-sm opacity-70" x-text="habit.description || 'No description'"></p>
+                                    <div class="flex items-center gap-4 mt-2">
+                                        <span class="badge badge-ghost badge-sm" x-text="habit.frequency"></span>
+                                        <span class="text-xs opacity-50">
+                                            <i class="fa-solid fa-calendar text-xs"></i>
+                                            Started <span x-text="formatDateShort(habit.createdAt)"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- Actions -->
+                                <div class="flex-shrink-0">
+                                    <div class="dropdown dropdown-end">
+                                        <div tabindex="0" role="button" class="btn btn-ghost btn-sm btn-circle">
+                                            <i class="fa-solid fa-ellipsis-vertical text-sm"></i>
+                                        </div>
+                                        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-40 p-2 shadow">
+                                            <li><button @click="openEditModal(habit)" class="gap-2"><i class="fa-solid fa-pen text-sm"></i> Edit</button></li>
+                                            <li><button @click="deleteHabit(habit.id)" class="gap-2 text-error"><i class="fa-solid fa-trash text-sm"></i> Delete</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Weekly Progress Chart -->
+                <div class="card bg-base-200 shadow">
+                    <div class="card-body">
+                        <h3 class="card-title text-lg">Weekly Progress</h3>
+                        <div class="h-48">
+                            <canvas id="weekly-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Habit Completion Chart -->
+                <div class="card bg-base-200 shadow">
+                    <div class="card-body">
+                        <h3 class="card-title text-lg">Today's Overview</h3>
+                        <div class="h-48 flex items-center justify-center">
+                            <canvas id="completion-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Tips -->
+                <div class="card bg-gradient-to-br from-primary/20 to-secondary/20 shadow">
+                    <div class="card-body">
+                        <h3 class="card-title text-lg gap-2">
+                            <i class="fa-solid fa-lightbulb text-lg text-warning"></i>
+                            Quick Tip
+                        </h3>
+                        <p class="text-sm opacity-80" x-text="currentTip"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Habit Modal -->
+    <dialog id="habit-modal" class="modal">
+        <div class="modal-box">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="font-bold text-lg mb-4" x-text="editingHabit ? 'Edit Habit' : 'Add New Habit'"></h3>
+            <form @submit.prevent="saveHabit()">
+                <div class="form-control mb-4">
+                    <label class="label">
+                        <span class="label-text">Habit Name *</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        x-model="habitForm.name" 
+                        class="input input-bordered w-full" 
+                        placeholder="e.g., Drink 8 glasses of water"
+                        required
+                    />
+                </div>
+                <div class="form-control mb-4">
+                    <label class="label">
+                        <span class="label-text">Description</span>
+                    </label>
+                    <textarea 
+                        x-model="habitForm.description" 
+                        class="textarea textarea-bordered w-full" 
+                        placeholder="Optional details about this habit"
+                        rows="2"
+                    ></textarea>
+                </div>
+                <div class="form-control mb-6">
+                    <label class="label">
+                        <span class="label-text">Frequency</span>
+                    </label>
+                    <select x-model="habitForm.frequency" class="select select-bordered w-full">
+                        <option value="Daily">Daily</option>
+                        <option value="Weekdays">Weekdays Only</option>
+                        <option value="Weekends">Weekends Only</option>
+                        <option value="Weekly">Weekly</option>
+                    </select>
+                </div>
+                <div class="modal-action">
+                    <button type="button" @click="closeModal()" class="btn btn-ghost">Cancel</button>
+                    <button type="submit" class="btn btn-primary" x-text="editingHabit ? 'Save Changes' : 'Add Habit'"></button>
+                </div>
+            </form>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
+
+    <!-- Confirmation Modal -->
+    <dialog id="confirm-modal" class="modal">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg">Delete Habit?</h3>
+            <p class="py-4">Are you sure you want to delete this habit? This action cannot be undone.</p>
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn btn-ghost">Cancel</button>
+                </form>
+                <button @click="confirmDelete()" class="btn btn-error">Delete</button>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
+
+    <!-- Footer -->
+    <div data-component="footer.html" data-base-path=".." class="mt-12"></div>
+
+    <!-- Print Report Template (Hidden) -->
+    <div id="print-report" class="hidden print-only print-container">
+        <!-- Content generated by JS -->
+    </div>
+
+    <!-- Track Page Functionality -->
+    <script src="../assets/js/track.js"></script>
 </body>
 </html>
