@@ -4,18 +4,46 @@
     <!-- Meta Tag -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daily Blueprint | Template</title>
+    <title>Daily Blueprint | About</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!-- Tailwind CSS -->
-    <link href="./dist/css/output.css" rel="stylesheet" />
+    <link href="../dist/css/output.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <!-- Theme Controller & Component Loader -->
-    <script src="./assets/js/theme-controller.js"></script>
+    <script src="../assets/js/theme-controller.js"></script>
     <!-- Alpine.js for component loading -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
 </head>
-<body>
-    
+<body class="min-h-screen flex flex-col" x-data="initialize()">
+    <!-- Navbar (Again) -->
+    <div data-component="navbar.html" data-base-path=".." class="sticky top-0 z-50"></div>
+
+    <main>
+        <div data-component="about-hero.html" data-base-path=".."></div>
+        <!-- VM = Vision Mission -->
+        <div data-component="about-mv.html" data-base-path=".."></div>
+        <div data-component="about-team.html" data-base-path=".."></div>
+    </main>
+
+    <!-- Footer -->
+    <div data-component="footer-home.html" data-base-path=".."></div>
+    <script>
+        function initialize() {
+            return {
+                //reinitialize navbar properties
+                ...themeController(),
+                basePath: '..',
+                activePage: 'about',
+
+
+                //load or create theme data
+                init() {
+                    //for themeController
+                    this.initTheme()
+                }
+            }
+        }
+    </script>
 </body>
 </html>
