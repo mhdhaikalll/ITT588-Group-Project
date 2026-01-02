@@ -528,102 +528,102 @@ function habitTracker() {
       );
 
       return `
-                        <!DOCTYPE html>
-                        <html>
-                        <head>
-                            <title>Daily Blueprint - Habit Report</title>
-                            <style>
-                                body { font-family: 'Segoe UI', Tahoma, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; }
-                                h1 { color: #ff865b; border-bottom: 2px solid #ff865b; padding-bottom: 10px; }
-                                h2 { color: #333; margin-top: 30px; }
-                                .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 20px 0; }
-                                .stat-box { background: #f5f5f5; padding: 15px; border-radius: 8px; text-align: center; }
-                                .stat-value { font-size: 24px; font-weight: bold; color: #ff865b; }
-                                .stat-label { font-size: 12px; color: #666; }
-                                .habit-list { list-style: none; padding: 0; }
-                                .habit-item { padding: 10px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; }
-                                .habit-complete { color: #22c55e; }
-                                .habit-incomplete { color: #ef4444; }
-                                .footer { margin-top: 40px; text-align: center; color: #666; font-size: 12px; }
-                            </style>
-                        </head>
-                        <body>
-                            <h1>📊 Daily Blueprint - Habit Report</h1>
-                            <p><strong>Date:</strong> ${this.formatDate(
-                              this.currentDate
-                            )}</p>
-                            
-                            <div class="stat-grid">
-                                <div class="stat-box">
-                                    <div class="stat-value">${
-                                      this.habits.length
-                                    }</div>
-                                    <div class="stat-label">Total Habits</div>
-                                </div>
-                                <div class="stat-box">
-                                    <div class="stat-value">${this.getCompletedCount()}</div>
-                                    <div class="stat-label">Completed</div>
-                                </div>
-                                <div class="stat-box">
-                                    <div class="stat-value">${this.getCompletionRate()}%</div>
-                                    <div class="stat-label">Completion Rate</div>
-                                </div>
-                                <div class="stat-box">
-                                    <div class="stat-value">${this.getBestStreak()}</div>
-                                    <div class="stat-label">Best Streak</div>
-                                </div>
-                            </div>
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>Daily Blueprint - Habit Report</title>
+              <style>
+                  body { font-family: Arial, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; }
+                  h1 { color: #ff865b; border-bottom: 2px solid #ff865b; padding-bottom: 10px; }
+                  h2 { color: #333; margin-top: 30px; }
+                  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 20px 0; }
+                  .stat-box { background: #f5f5f5; padding: 15px; border-radius: 8px; text-align: center; }
+                  .stat-value { font-size: 24px; font-weight: bold; color: #ff865b; }
+                  .stat-label { font-size: 12px; color: #666; }
+                  .habit-list { list-style: none; padding: 0; }
+                  .habit-item { padding: 10px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; }
+                  .habit-complete { color: #22c55e; }
+                  .habit-incomplete { color: #ef4444; }
+                  .footer { margin-top: 40px; text-align: center; color: #666; font-size: 12px; }
+              </style>
+          </head>
+          <body>
+              <h1>Daily Blueprint - Habit Report</h1>
+              <p><strong>Date:</strong> ${this.formatDate(
+                this.currentDate
+              )}</p>
+              
+              <div class="stat-grid">
+                  <div class="stat-box">
+                      <div class="stat-value">${
+                        this.habits.length
+                      }</div>
+                      <div class="stat-label">Total Habits</div>
+                  </div>
+                  <div class="stat-box">
+                      <div class="stat-value">${this.getCompletedCount()}</div>
+                      <div class="stat-label">Completed</div>
+                  </div>
+                  <div class="stat-box">
+                      <div class="stat-value">${this.getCompletionRate()}%</div>
+                      <div class="stat-label">Completion Rate</div>
+                  </div>
+                  <div class="stat-box">
+                      <div class="stat-value">${this.getBestStreak()}</div>
+                      <div class="stat-label">Best Streak</div>
+                  </div>
+              </div>
 
-                            <h2>✅ Completed Habits (${
-                              completedHabits.length
-                            })</h2>
-                            <ul class="habit-list">
-                                ${completedHabits
-                                  .map(
-                                    (h) => `
-                                    <li class="habit-item">
-                                        <span class="habit-complete">✓</span>
-                                        <span>${h.name}</span>
-                                        <span style="color: #666; font-size: 12px;">(${h.frequency})</span>
-                                    </li>
-                                `
-                                  )
-                                  .join("")}
-                                ${
-                                  completedHabits.length === 0
-                                    ? '<li class="habit-item" style="color: #666;">No habits completed yet</li>'
-                                    : ""
-                                }
-                            </ul>
+              <h2>✅ Completed Habits (${
+                completedHabits.length
+              })</h2>
+              <ul class="habit-list">
+                  ${completedHabits
+                    .map(
+                      (h) => `
+                      <li class="habit-item">
+                          <span class="habit-complete">✓</span>
+                          <span>${h.name}</span>
+                          <span style="color: #666; font-size: 12px;">(${h.frequency})</span>
+                      </li>
+                  `
+                    )
+                    .join("")}
+                  ${
+                    completedHabits.length === 0
+                      ? '<li class="habit-item" style="color: #666;">No habits completed yet</li>'
+                      : ""
+                  }
+              </ul>
 
-                            <h2>⏳ Remaining Habits (${
-                              incompleteHabits.length
-                            })</h2>
-                            <ul class="habit-list">
-                                ${incompleteHabits
-                                  .map(
-                                    (h) => `
-                                    <li class="habit-item">
-                                        <span class="habit-incomplete">○</span>
-                                        <span>${h.name}</span>
-                                        <span style="color: #666; font-size: 12px;">(${h.frequency})</span>
-                                    </li>
-                                `
-                                  )
-                                  .join("")}
-                                ${
-                                  incompleteHabits.length === 0
-                                    ? '<li class="habit-item" style="color: #22c55e;">All habits completed! 🎉</li>'
-                                    : ""
-                                }
-                            </ul>
+              <h2>⏳ Remaining Habits (${
+                incompleteHabits.length
+              })</h2>
+              <ul class="habit-list">
+                  ${incompleteHabits
+                    .map(
+                      (h) => `
+                      <li class="habit-item">
+                          <span class="habit-incomplete">○</span>
+                          <span>${h.name}</span>
+                          <span style="color: #666; font-size: 12px;">(${h.frequency})</span>
+                      </li>
+                  `
+                    )
+                    .join("")}
+                  ${
+                    incompleteHabits.length === 0
+                      ? '<li class="habit-item" style="color: #22c55e;">Congrats! All habits completed.</li>'
+                      : ""
+                  }
+              </ul>
 
-                            <div class="footer">
-                                <p>Generated by Daily Blueprint | ITT588 Group Project | ${new Date().toLocaleString()}</p>
-                            </div>
-                        </body>
-                        </html>
-                    `;
+              <div class="footer">
+                  <p>Generated by Daily Blueprint | ${new Date().toLocaleString()}</p>
+              </div>
+          </body>
+          </html>
+      `;
     },
   };
 }
