@@ -8,12 +8,11 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* Hide scrollbar across all browsers */
 html {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
 }
 
 html::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
 }

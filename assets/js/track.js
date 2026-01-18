@@ -134,6 +134,7 @@ function habitTracker() {
       });
     },
 
+    //load dari localStorage
     loadData() {
       const habits = localStorage.getItem("habitTrackerHabits");
       const completions = localStorage.getItem("habitTrackerCompletions");
@@ -142,6 +143,7 @@ function habitTracker() {
       if (completions) this.completions = JSON.parse(completions);
     },
 
+    //simpan ke localStorage
     saveData() {
       localStorage.setItem("habitTrackerHabits", JSON.stringify(this.habits));
       localStorage.setItem(
@@ -161,6 +163,7 @@ function habitTracker() {
       });
     },
 
+    //ni nak pendekkan date je
     formatDateShort(dateStr) {
       const date = new Date(dateStr);
       return date.toLocaleDateString("en-US", {
@@ -169,16 +172,19 @@ function habitTracker() {
       });
     },
 
+    //nak tentukan tarikh harini
     isToday() {
       return this.currentDate === new Date().toISOString().split("T")[0];
     },
 
+    //nak navigate ke tarikh sebelum
     previousDay() {
       const date = new Date(this.currentDate);
       date.setDate(date.getDate() - 1);
       this.currentDate = date.toISOString().split("T")[0];
     },
 
+    //nak navigate ke tarikh selepas
     nextDay() {
       if (!this.isToday()) {
         const date = new Date(this.currentDate);
@@ -187,6 +193,7 @@ function habitTracker() {
       }
     },
 
+    //nak drag balik ke current date
     goToToday() {
       this.currentDate = new Date().toISOString().split("T")[0];
     },
@@ -196,6 +203,22 @@ function habitTracker() {
       this.editingHabit = null;
       this.habitForm = { name: "", description: "", frequency: "Daily" };
       document.getElementById("habit-modal").showModal();
+    },
+
+    // Quick add habit from input bar
+    quickAddHabit() {
+      if (!this.habitForm.name.trim()) return;
+      
+      this.habits.push({
+        id: Date.now(),
+        name: this.habitForm.name.trim(),
+        description: "",
+        frequency: "Daily",
+        createdAt: new Date().toISOString(),
+      });
+      
+      this.habitForm.name = "";
+      this.saveData();
     },
 
     openEditModal(habit) {
@@ -377,7 +400,10 @@ function habitTracker() {
         date.setDate(date.getDate() - i);
         const dateStr = date.toISOString().split("T")[0];
         labels.push(date.toLocaleDateString("en-US", { weekday: "short" }));
-        data.push(this.completions[dateStr]?.length || 0);
+        // Calculate percentage for this day
+        const completedCount = this.completions[dateStr]?.length || 0;
+        const percentage = this.habits.length > 0 ? Math.round((completedCount / this.habits.length) * 100) : 0;
+        data.push(percentage);
       }
 
       // Get theme colors
@@ -391,7 +417,7 @@ function habitTracker() {
           labels,
           datasets: [
             {
-              label: "Habits Completed",
+              label: "Completion %",
               data,
               backgroundColor: primaryColor,
               borderRadius: 6,
@@ -403,13 +429,24 @@ function habitTracker() {
           maintainAspectRatio: false,
           plugins: {
             legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.raw + '%';
+                }
+              }
+            }
           },
           scales: {
             y: {
               beginAtZero: true,
+              max: 100,
               ticks: {
-                stepSize: 1,
+                stepSize: 25,
                 color: baseContentColor,
+                callback: function(value) {
+                  return value + '%';
+                }
               },
               grid: {
                 color: baseColor,
@@ -477,7 +514,10 @@ function habitTracker() {
             const date = new Date();
             date.setDate(date.getDate() - i);
             const dateStr = date.toISOString().split("T")[0];
-            data.push(this.completions[dateStr]?.length || 0);
+            // Calculate percentage for this day
+            const completedCount = this.completions[dateStr]?.length || 0;
+            const percentage = this.habits.length > 0 ? Math.round((completedCount / this.habits.length) * 100) : 0;
+            data.push(percentage);
           }
           this.weeklyChart.data.datasets[0].data = data;
           this.weeklyChart.update("none"); // Update without animation for better performance
@@ -527,6 +567,7 @@ function habitTracker() {
         (h) => !this.isHabitCompleted(h.id)
       );
 
+      //ni template print out report dalam bentuk html
       return `
           <!DOCTYPE html>
           <html>

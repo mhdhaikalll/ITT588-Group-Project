@@ -1,9 +1,3 @@
-/**
- * Theme Controller & Component Loader for Daily Blueprint
- * Manages theme switching, persistence, and modular component loading
- */
-
-// Theme controller function for Alpine.js
 function themeController() {
     return {
         currentTheme: 'light',
@@ -16,7 +10,6 @@ function themeController() {
             { name: 'winter', label: 'Color-Blind Friendly', color: '#047AFF' }
         ],
         
-        // Configuration (can be overridden when spreading)
         basePath: '.',
         activePage: 'home',
         showExportButton: false,
@@ -37,9 +30,6 @@ function themeController() {
     };
 }
 
-/**
- * Component Loader - Loads modular HTML components synchronously before Alpine
- */
 const ComponentLoader = {
     cache: {},
 
@@ -78,15 +68,12 @@ const ComponentLoader = {
     }
 };
 
-// Load components immediately when this script runs
 (async function() {
-    // Wait for DOM to be ready
     if (document.readyState === 'loading') {
         await new Promise(resolve => {
             document.addEventListener('DOMContentLoaded', resolve, { once: true });
         });
     }
     
-    // Load all components
     await ComponentLoader.loadAll();
 })();
