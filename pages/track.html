@@ -46,7 +46,6 @@
 
         <!-- Stats Cards -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <!-- Total Habits -->
             <div class="stat bg-base-200 rounded-box p-4">
                 <div class="stat-figure text-primary">
                     <i class="fa-solid fa-list-check text-2xl"></i>
@@ -54,7 +53,6 @@
                 <div class="stat-title text-xs">Total Habits</div>
                 <div class="stat-value text-2xl" x-text="habits.length">0</div>
             </div>
-            <!-- Completed Today -->
             <div class="stat bg-base-200 rounded-box p-4">
                 <div class="stat-figure text-success">
                     <i class="fa-solid fa-circle-check text-2xl"></i>
@@ -62,7 +60,6 @@
                 <div class="stat-title text-xs">Completed</div>
                 <div class="stat-value text-2xl" x-text="getCompletedCount()">0</div>
             </div>
-            <!-- Completion Rate -->
             <div class="stat bg-base-200 rounded-box p-4">
                 <div class="stat-figure text-info">
                     <i class="fa-solid fa-percent text-2xl"></i>
@@ -72,7 +69,6 @@
                     <span x-text="getCompletionRate()">0</span>%
                 </div>
             </div>
-            <!-- Best Streak -->
             <div class="stat bg-base-200 rounded-box p-4">
                 <div class="stat-figure text-warning">
                     <i class="fa-solid fa-fire text-2xl" :class="getBestStreak() >= 7 ? 'animate-fire' : ''"></i>
@@ -218,6 +214,13 @@
         </div>
     </main>
 
+    <!-- Feedback Toast (Color-Blind Friendly) -->
+    <div id="feedback-toast"
+        class="fixed bottom-6 right-6 text-white px-5 py-3 rounded-xl shadow-lg flex items-center gap-3 opacity-0 transform translate-y-4 transition-all duration-300 z-50">
+        <i id="feedback-icon" class="fa-solid fa-circle-check text-lg"></i>
+        <span id="feedback-message" class="font-medium"></span>
+    </div>
+
     <!-- Add/Edit Habit Modal -->
     <dialog id="habit-modal" class="modal">
         <div class="modal-box">
@@ -227,7 +230,10 @@
                 </button>
             </form>
             <h3 class="font-bold text-lg mb-4" x-text="editingHabit ? 'Edit Habit' : 'Add New Habit'"></h3>
-            <form @submit.prevent="saveHabit()">
+            <form @submit.prevent="
+                saveHabit();
+                showMessage(editingHabit ? 'Habit updated successfully ✏️' : 'Habit added successfully 🎉', 'success');
+            ">
                 <div class="form-control mb-4">
                     <label class="label">
                         <span class="label-text">Habit Name *</span>
@@ -300,6 +306,46 @@
 
     <!-- Track Page Functionality -->
     <script src="../assets/js/track.js"></script>
+
+    <!-- Feedback Function -->
+    <script>
+        function showMessage(message, type = 'success') {
+            const toast = document.getElementById('feedback-toast');
+            const msg = document.getElementById('feedback-message');
+            const icon = document.getElementById('feedback-icon');
+
+            msg.textContent = message;
+
+            // Reset classes
+            toast.classList.remove(
+                'from-blue-500', 'to-blue-600',
+                'from-indigo-500', 'to-indigo-600',
+                'from-orange-500', 'to-orange-600'
+            );
+            icon.className = 'fa-solid text-lg';
+
+            // Apply color & icon
+            if (type === 'success') {
+                toast.classList.add('bg-gradient-to-r', 'from-blue-500', 'to-blue-600');
+                icon.classList.add('fa-circle-check');
+            } else if (type === 'info') {
+                toast.classList.add('bg-gradient-to-r', 'from-indigo-500', 'to-indigo-600');
+                icon.classList.add('fa-info-circle');
+            } else if (type === 'error') {
+                toast.classList.add('bg-gradient-to-r', 'from-orange-500', 'to-orange-600');
+                icon.classList.add('fa-triangle-exclamation');
+            }
+
+            // Show toast
+            toast.classList.remove('opacity-0', 'translate-y-4');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-4');
+            }, 2500);
+        }
+    </script>
 </body>
 
 </html>
